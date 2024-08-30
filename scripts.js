@@ -64,8 +64,6 @@ function ballRandomColor() {
 }
 
 async function screamer() {
-    shout();
-
     ball.style.display = "none";
     countParagraph.style.display = "none";
 
@@ -74,7 +72,9 @@ async function screamer() {
     document.body.style.backgroundPosition = 'center';
     document.body.style.backgroundRepeat = 'no-repeat';
     document.body.style.backgroundAttachment = 'fixed';
-    document.body.style.height = '100vh'; 
+    document.body.style.height = '100vh';
+
+    shout();
 }
 
 function shout() {
