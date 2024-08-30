@@ -65,7 +65,6 @@ function ballRandomColor() {
 
 async function screamer() {
     shout();
-    await new Promise(r => setTimeout(r, 400));
 
     ball.style.display = "none";
     countParagraph.style.display = "none";
