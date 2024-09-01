@@ -63,6 +63,7 @@ let count = -1;
 let countScreamer = 0;
 
 function randomPosition() {
+    soundBallTap.pause();
 
     if (count >= 0) {
         soundBallTap.play();
@@ -168,25 +169,13 @@ ball.addEventListener('click', () => {
 });
 
 document.addEventListener('visibilitychange', function() {
-    if (gameBoolean == true) {
-        if (document.hidden) {
-            backgroundMusic.pause();
-        } else {
-            backgroundMusic.play();
-        }
-    }
-    if (countdownBoolean == true) {
-        if (document.hidden) {
-            countdown.volume = 0;
-        } else {
-            countdown.volume = 0.15;
-        }
-    }
-    if (screamerBoolean == true) {
-        if (document.hidden) {
-            soundScream.volume = 0;
-        } else {
-            soundScream.volume = 1;
-        }
+    if (document.hidden) {
+        if (gameBoolean) {backgroundMusic.pause();}
+        if (countdownBoolean) {countdown.volume = 0;}
+        if (screamerBoolean) {soundScream.volume = 0;}
+    } else {
+        if (gameBoolean) {backgroundMusic.play();}
+        if (countdownBoolean) {countdown.volume = 0.15;}
+        if (screamerBoolean) {soundScream.volume = 1;}
     }
 });
