@@ -63,7 +63,7 @@ let count = -1;
 let countScreamer = 0;
 
 function randomPosition() {
-    soundBallTap.pause();
+    soundBallTap.currentTime = 0;
 
     if (count >= 0) {
         soundBallTap.play();
