@@ -20,7 +20,7 @@ function musicLoad() {
     backgroundMusic.loop = true;
 
     countdown = new Audio('./src/countdown.mp3');
-    countdown.volume = 0.15;
+    countdown.volume = 0.2;
     
     soundScream = new Audio('./src/scream.mp3');
     soundScream.volume = 1;

@@ -138,14 +138,6 @@ body {
     text-align: center;
 }
 
-#telegram {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    width: 45px;
-    height: 45px;
-}
-
 @media screen and (min-width: 720px) {
     .buttons, #timer, #countParagraph {
         font-size: 55px;
@@ -159,10 +151,6 @@ body {
     #ball {
         width: 120px;
         height: 120px;
-    }
-    #telegram {
-        width: 60px;
-        height: 60px;
     }
 }
 .buttons:active {
