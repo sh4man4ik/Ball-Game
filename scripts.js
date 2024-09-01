@@ -52,7 +52,7 @@ async function startGame() {
     ball.style.display = "block";
 
     randomPosition();
-    if (gameBoolean == true) {
+    if (!document.hidden) {
         backgroundMusic.play();
     }
     countdownBoolean = false;
@@ -65,6 +65,7 @@ let countScreamer = 0;
 function randomPosition() {
 
     if (count >= 0) {
+        soundBallTap.play();
         controlScreamer();
     }
 
@@ -89,8 +90,6 @@ function randomPosition() {
 }
 
 async function controlScreamer() {
-    soundBallTap.play();
-
     countParagraph.classList.add('scale');
     countParagraph.textContent = count;
 
