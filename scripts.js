@@ -4,6 +4,9 @@ let timer = document.getElementById("timer");
 let countParagraph = document.getElementById("countParagraph");
 let shareButton = document.getElementById("shareButton");
 
+let gameBoolean = Boolean(false);
+let countdownBoolean = Boolean(false);
+let screamerBoolean = Boolean(false);
 let countdown;
 let backgroundMusic;
 let soundScream;
@@ -26,7 +29,7 @@ function musicLoad() {
     soundBallTap.volume = 0.2;
     
     soundBeep = new Audio('./src/beep.wav');
-    soundBeep.volume = 0.2;
+    soundBeep.volume = 0.4;
 
     countdown.loop, soundScream.loop, soundBallTap.loop, soundBeep.loop = false;
 }
@@ -37,10 +40,11 @@ async function startGame() {
     playButton.style.display = "none";
 
     countdown.play();
+    countdownBoolean = true;
     timer.style.display = "block";
     for (let i = 3; i >= 0; i--) {
         timer.textContent = i;
-        await new Promise(r => setTimeout(r, 880));
+        await new Promise(r => setTimeout(r, 870));
     }
     timer.style.display = "none";
 
@@ -48,13 +52,18 @@ async function startGame() {
     ball.style.display = "block";
 
     randomPosition();
-    backgroundMusic.play();
+    if (gameBoolean == true) {
+        backgroundMusic.play();
+    }
+    countdownBoolean = false;
+    gameBoolean = true;
 }
 
 let count = -1;
 let countScreamer = 0;
 
 function randomPosition() {
+
     if (count >= 0) {
         controlScreamer();
     }
@@ -90,6 +99,8 @@ async function controlScreamer() {
     }
 
     if (count == countScreamer) {
+        gameBoolean = false;
+        screamerBoolean = true;
         backgroundMusic.pause();
         screamer();
     } else {
@@ -127,6 +138,8 @@ async function screamer() {
     await new Promise(r => setTimeout(r, 2500));
     shareButton.style.opacity = '1';
     shareButton.style.transform = 'scale(1)';
+
+    screamerBoolean = false;
 }
 
 function shout() {
@@ -153,4 +166,28 @@ ball.addEventListener('click', () => {
     setTimeout(() => {
         ball.style.transform = "scale(1)";
     }, 100);
+});
+
+document.addEventListener('visibilitychange', function() {
+    if (gameBoolean == true) {
+        if (document.hidden) {
+            backgroundMusic.pause();
+        } else {
+            backgroundMusic.play();
+        }
+    }
+    if (countdownBoolean == true) {
+        if (document.hidden) {
+            countdown.volume = 0;
+        } else {
+            countdown.volume = 0.15;
+        }
+    }
+    if (screamerBoolean == true) {
+        if (document.hidden) {
+            soundScream.volume = 0;
+        } else {
+            soundScream.volume = 1;
+        }
+    }
 });
