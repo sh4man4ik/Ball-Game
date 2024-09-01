@@ -12,7 +12,7 @@ let soundBeep;
 musicLoad();
 
 function musicLoad() {
-    backgroundMusic = new Audio('./src/backgroundMusic.mp3');
+    backgroundMusic = new Audio('https://github.com/JustCookieCookie/Ball-Game/blob/src/backgroundMusic.mp3');
     backgroundMusic.volume = 0.15;
     backgroundMusic.loop = true;
 
