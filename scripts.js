@@ -4,17 +4,43 @@ let timer = document.getElementById("timer");
 let countParagraph = document.getElementById("countParagraph");
 let shareButton = document.getElementById("shareButton");
 
-let sound = new Audio('./src/scream.mp3');
-sound.volume = 0.5;
-sound.loop = false;
+let countdown;
+let backgroundMusic;
+let soundScream;
+let soundBallTap;
+let soundBeep;
+musicLoad();
+
+function musicLoad() {
+    backgroundMusic = new Audio('./src/backgroundMusic.mp3');
+    backgroundMusic.volume = 0.15;
+    backgroundMusic.loop = true;
+
+    countdown = new Audio('./src/countdown.mp3');
+    countdown.volume = 0.15;
+    
+    soundScream = new Audio('./src/scream.mp3');
+    soundScream.volume = 1;
+    
+    soundBallTap = new Audio('./src/ball_tap.wav');
+    soundBallTap.volume = 0.2;
+    
+    soundBeep = new Audio('./src/beep.wav');
+    soundBeep.volume = 0.2;
+
+    countdown.loop, soundScream.loop, soundBallTap.loop, soundBeep.loop = false;
+}
 
 async function startGame() {
+    backgroundMusic.pause();
+
     playButton.style.display = "none";
 
+    countdown.play();
     timer.style.display = "block";
     for (let i = 3; i >= 0; i--) {
         timer.textContent = i;
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise(r => setTimeout(r, 880));
     }
     timer.style.display = "none";
 
@@ -22,6 +48,7 @@ async function startGame() {
     ball.style.display = "block";
 
     randomPosition();
+    backgroundMusic.play();
 }
 
 let count = -1;
@@ -53,6 +80,8 @@ function randomPosition() {
 }
 
 async function controlScreamer() {
+    soundBallTap.play();
+
     countParagraph.classList.add('scale');
     countParagraph.textContent = count;
 
@@ -61,6 +90,7 @@ async function controlScreamer() {
     }
 
     if (count == countScreamer) {
+        backgroundMusic.pause();
         screamer();
     } else {
         countParagraph.style.transform = "scale(1.2)";
@@ -100,10 +130,12 @@ async function screamer() {
 }
 
 function shout() {
-    sound.play();
+    soundScream.play();
 }
 
 document.getElementById('shareButton').addEventListener('click', async () => {
+    soundBeep.play();
+
     try {
         await navigator.share({
             title: 'Ball Game',
