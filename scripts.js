@@ -127,11 +127,6 @@ async function screamer() {
     countParagraph.style.display = "none";
 
     document.body.style.backgroundImage = 'url("./src/screamer.webp")';
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundPosition = 'center';
-    document.body.style.backgroundRepeat = 'no-repeat';
-    document.body.style.backgroundAttachment = 'fixed';
-    document.body.style.height = '100vh'; 
 
     shout();
 
