@@ -148,7 +148,7 @@ document.getElementById('shareButton').addEventListener('click', async () => {
         await navigator.share({
             title: 'Ball Game',
             text: 'Самая интересная игра! Сможешь набрать больше 20?',
-            url: "https://justcookiecookie.github.io/Ball-Game/"
+            url: "https://sh4man4ik.github.io/Ball-Game/"
         });
     } catch (error) {
         console.error('Ошибка при попытке поделиться:', error);
